@@ -2,24 +2,21 @@ package ru.levelup.vitaliy.silinenko.qa.homework_1.task_1;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Scanner;
 
 public class ExponentiationOperation {
 
-    private int exponent;
-
-    void calculate(Scanner in, double digit) {
-        System.out.print("Введите степень: ");
-        exponent = in.nextInt();
+    double calculate(double digit1, double digit2) {
+        int exponent = (int) digit2;
+        System.out.println("Число " + digit1 + " будет возведено в степень " + exponent);
         if (exponent == 1) {
-            System.out.print("Результат: " + digit);
+            return digit1;
         } else {
-            double num3 = digit;
+            double result = digit1;
             while (exponent > 1) {
-                num3 = num3 * digit;
+                result *= digit1;
                 exponent--;
             }
-            System.out.print("Результат: " + (new BigDecimal(num3).setScale(2, RoundingMode.UP).doubleValue()));
+            return new BigDecimal(result).setScale(2, RoundingMode.UP).doubleValue();
         }
     }
 }
