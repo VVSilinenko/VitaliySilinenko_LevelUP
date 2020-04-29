@@ -1,14 +1,16 @@
 package ru.levelup.vitaliy.silinenko.qa.homework_1.task_1;
 
-import java.util.Scanner;
-
 public class FibonachchiOperation {
 
-    void calculate(Scanner in, int digit) {
+    long calculate(double digit1) {
+        int digit = (int) digit1;
         if (digit < 0) {
-            System.out.print("Необходимо ввести число больше или равно 0");
-        } else if (digit == 0 || digit == 1) {
-            System.out.print("Результат: " + digit);
+            System.out.println("Введено отрицательное число. Оно будет преобразовано в положительное");
+            digit = Math.abs(digit);
+        }
+        System.out.println("Будет показано число Фибоначчи под номером \"" + digit + "\"");
+        if (digit == 0 || digit == 1) {
+            return digit;
         } else {
             long a = 0;
             long b = 1;
@@ -17,7 +19,7 @@ public class FibonachchiOperation {
                 a = b;
                 b = next;
             }
-            System.out.print("Результат: " + b);
+            return b;
         }
     }
 }

@@ -13,34 +13,46 @@ public class Calculator {
     private void start() {
 
         Scanner in = new Scanner(System.in);
-        System.out.print("Введите число (целое или с плавающей точкой): ");
-        double digit = in.nextDouble();
+        System.out.print("Введите число 1: ");
+        double digit1 = in.nextDouble();
         System.out.print("Введите операцию (сложение \"+\", вычитание \"-\", умножение \"*\"" +
                 ", возведение в степень \"^\", факториал \"!\", числа Фибоначчи \"f\"): ");
         String operation = in.next();
         try {
-            if (operation.equals("+")) {
-                AdditionalOperation ao = new AdditionalOperation();
-                ao.calculate(in, digit);
-            } else if (operation.equals("-")) {
-                SubstractionOperation so = new SubstractionOperation();
-                so.calculate(in, digit);
-            } else if (operation.equals("*")) {
-                MultiplicationOperation mo = new MultiplicationOperation();
-                mo.calculate(in,digit);
-            } else if (operation.equals("^")) {
-                ExponentiationOperation eo = new ExponentiationOperation();
-                eo.calculate(in, digit);
-            } else if (operation.equals("!")) {
-                System.out.println("Если введено число с плавающей точкой, то оно будет округлено в меньшую сторону");
-                FactorialOperation fo = new FactorialOperation();
-                fo.calculate(in, (int) digit);
-            } else if (operation.equals("f")) {
-                System.out.println("Если введено число с плавающей точкой, то оно будет округлено в меньшую сторону");
-                FibonachchiOperation fo = new FibonachchiOperation();
-                fo.calculate(in, (int) digit);
-            } else {
-                System.out.print("Данная операция не поддерживается. Программа будет закрыта");
+            switch (operation) {
+                case "!": {
+                    FactorialOperation fo = new FactorialOperation();
+                    System.out.print("Результат: " + fo.calculate(digit1));
+                    return;
+                }
+                case "f": {
+                    FibonachchiOperation fo = new FibonachchiOperation();
+                    System.out.print("Результат: " + fo.calculate(digit1));
+                    return;
+                }
+            }
+            System.out.print("Введите число 2: ");
+            double digit2 = in.nextDouble();
+            switch (operation) {
+                case "+":
+                    AdditionalOperation ao = new AdditionalOperation();
+                    System.out.print("Результат: " + ao.calculate(digit1, digit2));
+                    break;
+                case "-":
+                    SubstractionOperation so = new SubstractionOperation();
+                    System.out.print("Результат: " + so.calculate(digit1, digit2));
+                    break;
+                case "*":
+                    MultiplicationOperation mo = new MultiplicationOperation();
+                    System.out.print("Результат: " + mo.calculate(digit1, digit2));
+                    break;
+                case "^":
+                    ExponentiationOperation eo = new ExponentiationOperation();
+                    System.out.print("Результат: " + eo.calculate(digit1, digit2));
+                    break;
+                default:
+                    System.out.print("Данная операция не поддерживается. Программа будет закрыта");
+                    break;
             }
         } catch (InputMismatchException ex) {
             System.out.println("Необходимо ввести цифру. Попробуйте еще раз");
