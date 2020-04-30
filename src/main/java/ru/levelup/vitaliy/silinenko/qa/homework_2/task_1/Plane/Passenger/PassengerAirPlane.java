@@ -5,8 +5,8 @@ public class PassengerAirPlane extends PassengerPlane {
     // Кол-во двигателей
     private int countEngine;
 
-    public PassengerAirPlane(String name, double maxRangeOfFlight, double maxSpeed, double price, int capacity, int countEngine) {
-        super(name, maxRangeOfFlight, maxSpeed, price, capacity);
+    public PassengerAirPlane(String name, double maxRangeOfFlight, double maxSpeed, double price, double x1, double y1, int capacity, int countEngine) {
+        super(name, maxRangeOfFlight, maxSpeed, price, x1, y1, capacity);
         this.countEngine = countEngine;
     }
 
@@ -18,18 +18,4 @@ public class PassengerAirPlane extends PassengerPlane {
         this.countEngine = countEngine;
     }
 
-    @Override
-    public void takeoff() {
-
-    }
-
-    @Override
-    public void flight(double x2, double y2) {
-
-    }
-
-    @Override
-    public void landing(double landingSpeed) {
-
-    }
 }

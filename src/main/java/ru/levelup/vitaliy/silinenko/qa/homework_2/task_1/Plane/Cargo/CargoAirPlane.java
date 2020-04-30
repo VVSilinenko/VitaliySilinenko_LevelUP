@@ -5,8 +5,8 @@ public class CargoAirPlane extends CargoPlane {
     // Кол-во двигателей
     private int countEngine;
 
-    public CargoAirPlane(String name, double maxRangeOfFlight, double maxSpeed, double price, double carryingCapacity, int countEngine) {
-        super(name, maxRangeOfFlight, maxSpeed, price, carryingCapacity);
+    public CargoAirPlane(String name, double maxRangeOfFlight, double maxSpeed, double price, double x1, double y1, double carryingCapacity, int countEngine) {
+        super(name, maxRangeOfFlight, maxSpeed, price, x1, y1, carryingCapacity);
         this.countEngine = countEngine;
     }
 
@@ -18,18 +18,4 @@ public class CargoAirPlane extends CargoPlane {
         this.countEngine = countEngine;
     }
 
-    @Override
-    public void takeoff() {
-
-    }
-
-    @Override
-    public void flight(double x2, double y2) {
-
-    }
-
-    @Override
-    public void landing(double landingSpeed) {
-
-    }
 }

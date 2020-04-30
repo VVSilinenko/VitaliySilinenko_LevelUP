@@ -4,8 +4,8 @@ public class CargoRotorPlane extends CargoPlane {
 
     private double maxHeight;
 
-    public CargoRotorPlane(String name, double maxRangeOfFlight, double maxSpeed, double price, double carryingCapacity, double maxHeight) {
-        super(name, maxRangeOfFlight, maxSpeed, price, carryingCapacity);
+    public CargoRotorPlane(String name, double maxRangeOfFlight, double maxSpeed, double price, double x1, double y1, double carryingCapacity, double maxHeight) {
+        super(name, maxRangeOfFlight, maxSpeed, price, x1, y1, carryingCapacity);
         this.maxHeight = maxHeight;
     }
 
@@ -17,20 +17,5 @@ public class CargoRotorPlane extends CargoPlane {
         this.maxHeight = maxHeight;
     }
 
-
-    @Override
-    public void takeoff() {
-
-    }
-
-    @Override
-    public void flight(double x2, double y2) {
-
-    }
-
-    @Override
-    public void landing(double landingSpeed) {
-
-    }
 }
 

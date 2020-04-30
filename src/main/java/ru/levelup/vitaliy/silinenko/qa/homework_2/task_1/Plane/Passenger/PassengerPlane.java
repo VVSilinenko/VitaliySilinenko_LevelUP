@@ -6,8 +6,8 @@ public abstract class PassengerPlane extends Plane {
 
     private int capacity;
 
-    public PassengerPlane(String name, double maxRangeOfFlight, double maxSpeed, double price, int capacity) {
-        super(name, maxRangeOfFlight, maxSpeed, price);
+    public PassengerPlane(String name, double maxRangeOfFlight, double maxSpeed, double price, double x1, double y1, int capacity) {
+        super(name, maxRangeOfFlight, maxSpeed, price, x1, y1);
         this.capacity = capacity;
     }
 

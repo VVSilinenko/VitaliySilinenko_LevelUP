@@ -6,8 +6,8 @@ public abstract class CargoPlane extends Plane {
 
     private double carryingCapacity;
 
-    public CargoPlane(String name, double maxRangeOfFlight, double maxSpeed, double price, double carryingCapacity) {
-        super(name, maxRangeOfFlight, maxSpeed, price);
+    public CargoPlane(String name, double maxRangeOfFlight, double maxSpeed, double price, double x1, double y1,  double carryingCapacity) {
+        super(name, maxRangeOfFlight, maxSpeed, price, x1, y1);
         this.carryingCapacity = carryingCapacity;
     }
 

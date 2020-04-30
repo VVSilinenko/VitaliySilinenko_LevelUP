@@ -5,8 +5,8 @@ public class PassengerRotorPlane extends PassengerPlane {
     // Кол-во винтов
     private int countRotor;
 
-    public PassengerRotorPlane(String name, double maxRangeOfFlight, double maxSpeed, double price, int capacity, int countRotor) {
-        super(name, maxRangeOfFlight, maxSpeed, price, capacity);
+    public PassengerRotorPlane(String name, double maxRangeOfFlight, double maxSpeed, double price, double x1, double y1, int capacity, int countRotor) {
+        super(name, maxRangeOfFlight, maxSpeed, price, x1, y1, capacity);
         this.countRotor = countRotor;
     }
 
@@ -18,18 +18,4 @@ public class PassengerRotorPlane extends PassengerPlane {
         this.countRotor = countRotor;
     }
 
-    @Override
-    public void takeoff() {
-
-    }
-
-    @Override
-    public void flight(double x2, double y2) {
-
-    }
-
-    @Override
-    public void landing(double landingSpeed) {
-
-    }
 }
