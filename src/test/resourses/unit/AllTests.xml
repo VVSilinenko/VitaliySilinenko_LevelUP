@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="AllTests">
+    <suite-files>
+        <suite-file path="SumTestSuite.xml"/>
+        <suite-file path="SubTestSuite.xml"/>
+        <suite-file path="MultTestSuite.xml"/>
+        <suite-file path="SinTestSuite.xml"/>
+        <suite-file path="CosTestSuite.xml"/>
+        <suite-file path="TgTestSuite.xml"/>
+        <suite-file path="CtgTestSuite.xml"/>
+        <suite-file path="DivTestSuite.xml"/>
+        <suite-file path="PowTestSuite.xml"/>
+        <suite-file path="SqrtTestSuite.xml"/>
+    </suite-files>
+</suite>
