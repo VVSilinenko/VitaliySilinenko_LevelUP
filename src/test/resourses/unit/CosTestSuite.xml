@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="CosTestSuite">
-    <test name="CosTest">
-        <classes>
-            <class name="ru.levelup.vitaliy.silinenko.qa.homework_3.task_1.test.CosTest"/>
-        </classes>
-    </test>
-</suite>
