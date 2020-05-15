@@ -1,16 +1,15 @@
 package ru.levelup.vitaliy.silinenko.qa.homework_3.task_1.test;
 
-import com.epam.tat.module4.Calculator;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class SumTest {
+public class SumTest extends TestBase {
 
 
     @DataProvider(name = "LongTest")
-    public static Object[][] LongTest() {
+    public Object[][] LongTest() {
         return new Object[][] {
                 {45632, 2342, 47974},
                 {4, 4, 8},
@@ -20,8 +19,13 @@ public class SumTest {
         };
     }
 
+    @Test (dataProvider = "LongTest")
+    public void sumLongTest(long a, long b, long expectedResult){
+        assertEquals(calculator.sum(a,b), expectedResult);
+    }
+
     @DataProvider(name = "DoubleTest")
-    public static Object[][] DoubleTest() {
+    public Object[][] DoubleTest() {
         return new Object[][]{
                 {2.6, 4.3, 6.9},
                 {1.8, 3.9, 5.7},
@@ -31,15 +35,8 @@ public class SumTest {
         };
     }
 
-    @Test (dataProvider = "LongTest")
-    public void sumLongTest(long a, long b, long expectedResult){
-        Calculator calculator = new Calculator();
-        assertEquals(calculator.sum(a,b), expectedResult);
-    }
-
     @Test (dataProvider = "DoubleTest")
     public void sumDoubleTest(double a, double b, double expectedResult){
-        Calculator calculator = new Calculator();
         assertEquals(calculator.sum(a,b), expectedResult);
     }
 

@@ -6,10 +6,10 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class SqrtTest {
+public class SqrtTest extends TestBase{
 
     @DataProvider(name = "DoubleTest")
-    public static Object[][] DoubleTest() {
+    public Object[][] DoubleTest() {
         return new Object[][]{
                 {4, 2},
                 {169, 13},
@@ -22,7 +22,6 @@ public class SqrtTest {
 
     @Test(dataProvider = "DoubleTest")
     public void powDoubleTest(double a, double expectedResult){
-        Calculator calculator = new Calculator();
         assertEquals(calculator.sqrt(a), expectedResult);
     }
 }

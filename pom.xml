@@ -8,6 +8,23 @@
     <artifactId>LevelUp</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.tat.module4</groupId>
+            <artifactId>calculator</artifactId>
+            <version>1.0</version>
+            <systemPath>${basedir}/calculator-1.0.jar</systemPath>
+            <scope>system</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>

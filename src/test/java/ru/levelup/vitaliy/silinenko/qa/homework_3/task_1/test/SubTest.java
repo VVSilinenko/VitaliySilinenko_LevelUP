@@ -9,10 +9,10 @@ import java.math.RoundingMode;
 
 import static org.testng.Assert.assertEquals;
 
-public class SubTest {
+public class SubTest extends TestBase {
 
     @DataProvider(name = "LongTest")
-    public static Object[][] LongTest() {
+    public Object[][] LongTest() {
         return new Object[][] {
                 {523, 52, 471},
                 {-45, -36, -9},
@@ -24,12 +24,11 @@ public class SubTest {
 
     @Test(dataProvider = "LongTest")
     public void subLongTest(long a, long b, long expectedResult){
-        Calculator calculator = new Calculator();
         assertEquals(calculator.sub(a,b), expectedResult);
     }
 
     @DataProvider(name = "DoubleTest")
-    public static Object[][] DoubleTest() {
+    public Object[][] DoubleTest() {
         return new Object[][]{
                 {56.84, 89.2525, -32.4125},
                 {-253.4, -89.22458, -164.1754},
@@ -41,7 +40,6 @@ public class SubTest {
 
     @Test (dataProvider = "DoubleTest")
     public void subDoubleTest(double a, double b, double expectedResult){
-        Calculator calculator = new Calculator();
         double round = new BigDecimal(calculator.sub(a,b)).setScale(4, RoundingMode.HALF_UP).doubleValue();
         assertEquals(round, expectedResult);
     }

@@ -1,15 +1,14 @@
 package ru.levelup.vitaliy.silinenko.qa.homework_3.task_1.test;
 
-import com.epam.tat.module4.Calculator;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class MultTest {
+public class MultTest extends TestBase{
 
     @DataProvider(name = "LongTest")
-    public static Object[][] LongTest() {
+    public Object[][] LongTest() {
         return new Object[][] {
                 {3, 9, 27},
                 {-45, 5, -225},
@@ -22,12 +21,11 @@ public class MultTest {
 
     @Test(dataProvider = "LongTest")
     public void multLongTest(long a, long b, long expectedResult){
-        Calculator calculator = new Calculator();
         assertEquals(calculator.mult(a,b), expectedResult);
     }
 
     @DataProvider(name = "DoubleTest")
-    public static Object[][] DoubleTest() {
+    public Object[][] DoubleTest() {
         return new Object[][]{
                 {2.44, 2, 4.88},
                 {-25.3, 0.3666, -9.27498},
@@ -39,7 +37,6 @@ public class MultTest {
 
     @Test (dataProvider = "DoubleTest")
     public void multDoubleTest(double a, double b, double expectedResult){
-        Calculator calculator = new Calculator();
         assertEquals(calculator.mult(a,b), Math.floor(expectedResult));
     }
 }

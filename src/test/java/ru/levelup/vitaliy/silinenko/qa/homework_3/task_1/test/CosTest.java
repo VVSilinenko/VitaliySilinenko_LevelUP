@@ -1,6 +1,5 @@
 package ru.levelup.vitaliy.silinenko.qa.homework_3.task_1.test;
 
-import com.epam.tat.module4.Calculator;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -9,10 +8,10 @@ import java.math.RoundingMode;
 
 import static org.testng.Assert.assertEquals;
 
-public class CosTest {
+public class CosTest extends TestBase {
 
     @DataProvider(name = "DoubleTest")
-    public static Object[][] DoubleTest() {
+    public Object[][] DoubleTest() {
         return new Object[][]{
                 {0.0, 1.0000},
                 {30.0, 0.8660},
@@ -27,7 +26,6 @@ public class CosTest {
 
     @Test(dataProvider = "DoubleTest")
     public void cosDoubleTest(double a, double expectedResult) {
-        Calculator calculator = new Calculator();
         double round = new BigDecimal(calculator.cos(a)).setScale(4, RoundingMode.HALF_UP).doubleValue();
         assertEquals(round, expectedResult);
     }

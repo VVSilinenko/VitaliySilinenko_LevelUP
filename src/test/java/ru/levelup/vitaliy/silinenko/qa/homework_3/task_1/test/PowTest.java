@@ -1,15 +1,14 @@
 package ru.levelup.vitaliy.silinenko.qa.homework_3.task_1.test;
 
-import com.epam.tat.module4.Calculator;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class PowTest {
+public class PowTest extends TestBase{
 
     @DataProvider(name = "DoubleTest")
-    public static Object[][] DoubleTest() {
+    public Object[][] DoubleTest() {
         return new Object[][]{
                 {4, 2, 16},
                 {-25.3, 1, -25.3},
@@ -22,7 +21,6 @@ public class PowTest {
 
     @Test(dataProvider = "DoubleTest")
     public void powDoubleTest(double a, double b, double expectedResult){
-        Calculator calculator = new Calculator();
         assertEquals(calculator.pow(a,b), expectedResult);
     }
 }
