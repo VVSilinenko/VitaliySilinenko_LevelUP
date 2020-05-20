@@ -1,8 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="TgTestsSuite">
-    <test name="TgTests">
-        <classes>
-            <class name="ru.levelup.vitaliy.silinenko.qa.homework_3.task_1.test.TgTest"/>
-        </classes>
-    </test>
-</suite>
