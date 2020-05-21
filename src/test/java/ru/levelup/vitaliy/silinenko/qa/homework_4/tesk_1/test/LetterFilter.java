@@ -37,8 +37,8 @@ public class LetterFilter extends TestBase {
         wait.until(ExpectedConditions.elementToBeClickable(draftList.get(0))).click();
         // Проверки e-mail, темы и текста письма
         assertEquals(wait.until(ExpectedConditions.elementToBeClickable(xpath("//div[@class='letter__author']/span"))).getAttribute("title"), email);
-        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(tagName("h2"))).getText().contains(subject));
-        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(cssSelector("div[id$='BODY']"))).getText().contains(body));
+        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(tagName("h2"))).getText().contains(subject), "Тема письма не содержит необходимого текста");
+        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(cssSelector("div[id$='BODY']"))).getText().contains(body), "Тело письма не содержит необходимого текста");
         // Переход в "Тест"
         wait.until(ExpectedConditions.elementToBeClickable(xpath("//div[@class='nav__folder-name__txt'][text()='Тест']"))).click();
         // Подсчет всех писем в "Тест"
@@ -47,8 +47,8 @@ public class LetterFilter extends TestBase {
         draftList.get(0).click();
         // Проверки e-mail, темы и текста письма
         assertEquals(wait.until(ExpectedConditions.elementToBeClickable(xpath("//div[@class='letter__author']/span"))).getAttribute("title"), email);
-        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(tagName("h2"))).getText().contains(subject));
-        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(cssSelector("div[id$='BODY']"))).getText().contains(body));
+        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(tagName("h2"))).getText().contains(subject), "Тема письма не содержит необходимого текста");
+        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(cssSelector("div[id$='BODY']"))).getText().contains(body), "Тело письма не содержит необходимого текста");
         // Выход
         wait.until(ExpectedConditions.elementToBeClickable(id("PH_logoutLink"))).click();
 

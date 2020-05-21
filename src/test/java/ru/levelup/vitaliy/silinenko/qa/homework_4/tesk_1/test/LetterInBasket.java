@@ -35,8 +35,8 @@ public class LetterInBasket extends TestBase {
         draftList.get(0).click();
         // Проверки e-mail, темы и текста письма
         assertEquals(driver.findElement(xpath("//div[@class='letter__author']/span")).getAttribute("title"), email);
-        assertTrue(driver.findElement(tagName("h2")).getText().contains(subject));
-        assertTrue(driver.findElement(cssSelector("div[id$='BODY']")).getText().contains(body));
+        assertTrue(driver.findElement(tagName("h2")).getText().contains(subject), "Тема письма не содержит необходимого текста");
+        assertTrue(driver.findElement(cssSelector("div[id$='BODY']")).getText().contains(body), "Тело письма не содержит необходимого текста");
         // Удаление письма
         driver.findElement(xpath("//span[@class='button2__txt'][text()='Удалить']")).click();
         // Переход в "Корзина"
@@ -45,8 +45,8 @@ public class LetterInBasket extends TestBase {
         driver.findElements(xpath("//div[@class='dataset-letters']//span[@class='ll-crpt']")).get(0).click();
         // Проверки e-mail, темы и текста письма
         assertEquals(driver.findElement(xpath("//div[@class='letter__author']/span")).getAttribute("title"), email);
-        assertTrue(driver.findElement(tagName("h2")).getText().contains(subject));
-        assertTrue(driver.findElement(cssSelector("div[id$='BODY']")).getText().contains(body));
+        assertTrue(driver.findElement(tagName("h2")).getText().contains(subject), "Тема письма не содержит необходимого текста");
+        assertTrue(driver.findElement(cssSelector("div[id$='BODY']")).getText().contains(body), "Тело письма не содержит необходимого текста");
         // Выход
         driver.findElement(id("PH_logoutLink")).click();
 

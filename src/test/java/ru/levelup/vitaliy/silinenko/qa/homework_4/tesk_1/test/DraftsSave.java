@@ -34,20 +34,18 @@ public class DraftsSave extends TestBase {
         // Переход в "Черновики"
         wait.until(ExpectedConditions.elementToBeClickable(xpath("//div[@class='nav__folder-name__txt'][text()='Черновики']"))).click();
         // Подсчет всех писем в "Черновиках"
-        List<WebElement> draftList = driver.findElements(xpath("//div[@class='dataset__items']//div[@class='llc__item llc__item_correspondent']"));
+        List<WebElement> draftList = driver.findElements(xpath("//div[@class='dataset-letters']//span[@class='ll-crpt']"));
         // Переход в первое письмо
         draftList.get(0).click();
         // Проверки e-mail, темы и текста письма
         assertEquals(wait.until(ExpectedConditions.elementToBeClickable(xpath("//div[@data-type='to'][@tabindex='-1']/div/div"))).getText(), email);
         assertEquals(wait.until(ExpectedConditions.elementToBeClickable(name("Subject"))).getAttribute("value"), subject);
-        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(xpath("//div[@aria-multiline='true']"))).getText().contains(body));
+        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(xpath("//div[@aria-multiline='true']"))).getText().contains(body), "Тело письма не содержит необходимого текста");
         // Нажатие на "Отправить"
         wait.until(ExpectedConditions.elementToBeClickable(xpath("//div[@class='compose-app__buttons']//span[text()='Отправить']"))).click();
         wait.until(ExpectedConditions.elementToBeClickable(xpath("//span[@title='Закрыть']"))).click();
-        // Переход в "Черновики"
-        wait.until(ExpectedConditions.elementToBeClickable(xpath("//div[@class='nav__folder-name__txt'][text()='Черновики']"))).click();
         // Проверка, что письмо исчезло из "Черновиков"
-        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(xpath("//span[@class='octopus__title']"))).getText().contains("У вас нет незаконченных"));
+        assertEquals(driver.findElement(xpath("//a[@href='/drafts/']")).getAttribute("title"), "Черновики, нет писем");
         // Переход во "Входящие"
         wait.until(ExpectedConditions.elementToBeClickable(xpath("//div[@class='nav__folder-name__txt'][text()='Входящие']"))).click();
         draftList = driver.findElements(xpath("//div[@class='dataset-letters']//span[@class='ll-crpt']"));
@@ -56,7 +54,7 @@ public class DraftsSave extends TestBase {
         // Проверки e-mail, темы и текста письма
         assertEquals(wait.until(ExpectedConditions.elementToBeClickable(xpath("//span[@class='letter-contact']"))).getAttribute("title"), email);
         assertEquals(wait.until(ExpectedConditions.elementToBeClickable(tagName("h2"))).getText(), subject);
-        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(cssSelector("div[id$='BODY']"))).getText().contains(body));
+        assertTrue(wait.until(ExpectedConditions.elementToBeClickable(cssSelector("div[id$='BODY']"))).getText().contains(body), "Тело письма не содержит необходимого текста");
         // Выход
         wait.until(ExpectedConditions.elementToBeClickable(id("PH_logoutLink"))).click();
     }
