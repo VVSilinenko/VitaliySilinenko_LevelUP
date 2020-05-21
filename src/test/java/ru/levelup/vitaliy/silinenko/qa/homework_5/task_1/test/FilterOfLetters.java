@@ -13,15 +13,15 @@ public class FilterOfLetters extends TestBase {
     @DataProvider(name = "DataTest")
     public Object[][] DataTest() {
         return new Object[][]{
-                {"tester.csi", "WgsXM9JS39kuvAC", "tester.csi@list.ru", "testSubject \"Тест\"", "testBody"}
+                {"tester.csi@list.ru", "testSubject \"Тест\"", "testBody"}
         };
     }
 
     @Test (dataProvider = "DataTest")
-    public void filterOfLettersTest(String login, String password, String email, String subject, String body){
+    public void filterOfLettersTest( String email, String subject, String body){
 
         // Авторизация
-        authPage.authorization(login, password);
+        authPage.authorization();
         // assert, что авторизация успешна
         assertTrue(homePage.getWriteLetterButton().isEnabled());
         // Удаление писем из всех папок
@@ -45,7 +45,7 @@ public class FilterOfLetters extends TestBase {
         testPage.openLetterByIndex(0);
         // Проверка получателя, темы и тела письма
         SoftAssert sa = new SoftAssert();
-        sa.assertEquals(testPage.getSenderField().getAttribute("title"), login + "@list.ru");
+        sa.assertEquals(testPage.getSenderField().getAttribute("title"), email);
         sa.assertEquals(testPage.getSubjectField().getText(), subject);
         sa.assertTrue(testPage.getBodyField().getText().contains(body), "Тело письма не содержит ожидаемого текста");
         sa.assertAll();

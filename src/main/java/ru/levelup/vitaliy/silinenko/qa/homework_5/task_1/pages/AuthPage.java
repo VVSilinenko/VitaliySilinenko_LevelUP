@@ -5,7 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 public class AuthPage {
 
@@ -37,11 +39,22 @@ public class AuthPage {
     @FindBy (xpath = "//select[@id='mailbox:domain']/option")
     private List<WebElement> domainsList;
 
-    public void authorization(String login, String password){
-        loginField.sendKeys("tester.csi");
-        changeDomain("@list.ru");
+
+    public void authorization(){
+        Properties authProperties = new Properties();
+        try {
+            authProperties.load(this.getClass().getClassLoader().getResourceAsStream("auth.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String login = authProperties.getProperty("login");
+        String password = authProperties.getProperty("password");
+        String domain = authProperties.getProperty("domain");
+
+        loginField.sendKeys(login);
+        changeDomain(domain);
         enterPasswordButton.click();
-        passwordField.sendKeys("WgsXM9JS39kuvAC");
+        passwordField.sendKeys(password);
         submitButton.click();
     }
 

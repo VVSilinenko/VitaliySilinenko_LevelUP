@@ -13,15 +13,15 @@ public class LetterInBasket extends TestBase {
     @DataProvider(name = "DataTest")
     public Object[][] DataTest() {
         return new Object[][]{
-                {"tester.csi", "WgsXM9JS39kuvAC", "tester.csi@list.ru", "testSubject", "testBody"}
+                {"tester.csi@list.ru", "testSubject", "testBody"}
         };
     }
 
     @Test (dataProvider = "DataTest")
-    public void letterInBasketTest(String login, String password, String email, String subject, String body){
+    public void letterInBasketTest(String email, String subject, String body){
 
         // Авторизация
-        authPage.authorization(login, password);
+        authPage.authorization();
         // assert, что авторизация успешна
         assertTrue(homePage.getWriteLetterButton().isEnabled());
         // Удаление писем из всех папок
@@ -40,7 +40,7 @@ public class LetterInBasket extends TestBase {
         inboxPage.openLetterByIndex(0);
         // Проверка получателя, темы и тела письма
         SoftAssert sa = new SoftAssert();
-        sa.assertEquals(inboxPage.getSenderField().getAttribute("title"), login + "@list.ru");
+        sa.assertEquals(inboxPage.getSenderField().getAttribute("title"), email);
         sa.assertEquals(inboxPage.getSubjectField().getText(), subject);
         sa.assertTrue(inboxPage.getBodyField().getText().contains(body), "Тело письма не содержит ожидаемого текста");
         sa.assertAll();
