@@ -47,7 +47,7 @@ public class FilterOfLetters extends TestBase {
         SoftAssert sa = new SoftAssert();
         sa.assertEquals(testPage.getSenderField().getAttribute("title"), login + "@list.ru");
         sa.assertEquals(testPage.getSubjectField().getText(), subject);
-        sa.assertTrue(testPage.getBodyField().getText().contains(body));
+        sa.assertTrue(testPage.getBodyField().getText().contains(body), "Тело письма не содержит ожидаемого текста");
         sa.assertAll();
 
         // Выход

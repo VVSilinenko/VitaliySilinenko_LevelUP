@@ -42,7 +42,7 @@ public class LetterInBasket extends TestBase {
         SoftAssert sa = new SoftAssert();
         sa.assertEquals(inboxPage.getSenderField().getAttribute("title"), login + "@list.ru");
         sa.assertEquals(inboxPage.getSubjectField().getText(), subject);
-        sa.assertTrue(inboxPage.getBodyField().getText().contains(body));
+        sa.assertTrue(inboxPage.getBodyField().getText().contains(body), "Тело письма не содержит ожидаемого текста");
         sa.assertAll();
         // Удаление письма
         inboxPage.clickDeleteButton();

@@ -183,4 +183,8 @@ public class HomePage {
     public WebElement getWriteLetterButton() {
         return writeLetterButton;
     }
+
+    public WebElement getPopupMessageDrafts() {
+        return popupMessageDrafts;
+    }
 }
