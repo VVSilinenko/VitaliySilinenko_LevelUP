@@ -3,20 +3,17 @@ package ru.levelup.vitaliy.silinenko.qa.homework_5.task_1.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class CreateLetterPage {
+public class CreateLetterPage extends BasePage {
 
-    private WebDriver driver;
     private WebDriverWait wait;
 
     public CreateLetterPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+        super(driver);
     }
 
     // Поле "Кому"
@@ -87,11 +84,11 @@ public class CreateLetterPage {
         return false;
     }
 
-    public WebElement getSubjectField() {
-        return subjectField;
+    public String getSubjectField() {
+        return subjectField.getAttribute("value");
     }
 
-    public WebElement getBodyField() {
-        return bodyField;
+    public String getBodyField() {
+        return bodyField.getText();
     }
 }

@@ -3,19 +3,15 @@ package ru.levelup.vitaliy.silinenko.qa.homework_5.task_1.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class BaseFolderPage {
+public class BaseFolderPage extends BasePage {
 
-    private WebDriver driver;
-
-    BaseFolderPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+    protected BaseFolderPage(WebDriver driver) {
+        super(driver);
     }
 
     // Список писем
@@ -40,9 +36,8 @@ public class BaseFolderPage {
 
     // Открытие письма по индексу
     public void openLetterByIndex(int index){
-        List<WebElement> letters = lettersList;
-        if (letters.size() > 0 && index < letters.size()) {
-            letters.get(index).click();
+        if (lettersList.size() > 0 && index < lettersList.size()) {
+            lettersList.get(index).click();
         }
     }
 
@@ -52,19 +47,19 @@ public class BaseFolderPage {
         wait.until(ExpectedConditions.elementToBeClickable(deleteButton)).click();
     }
 
-    public WebElement getSenderField() {
-        return senderField;
+    public String getSenderField() {
+        return senderField.getAttribute("title");
     }
 
-    public WebElement getSubjectField() {
-        return subjectField;
+    public String getSubjectField() {
+        return subjectField.getText();
     }
 
-    public WebElement getBodyField() {
-        return bodyField;
+    public String getBodyField() {
+        return bodyField.getText();
     }
 
-    public List<WebElement> getLettersList() {
-        return lettersList;
+    public int getLettersListSize() {
+        return lettersList.size();
     }
 }

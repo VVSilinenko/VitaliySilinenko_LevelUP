@@ -5,9 +5,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ru.levelup.vitaliy.silinenko.qa.homework_5.task_1.TestBase;
 
-import java.io.IOException;
-import java.util.Properties;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -47,22 +44,22 @@ public class SaveInDrafts extends TestBase {
         // Проверка получателя, темы и тела письма
         SoftAssert sa = new SoftAssert();
         sa.assertTrue(createPage.isEmptyRecipient(email));
-        sa.assertEquals(createPage.getSubjectField().getAttribute("value"), subject);
-        sa.assertTrue(createPage.getBodyField().getText().contains(body), "Тело письма не содержит ожидаемого текста");
+        sa.assertEquals(createPage.getSubjectField(), subject);
+        sa.assertTrue(createPage.getBodyField().contains(body), "Тело письма не содержит ожидаемого текста");
         sa.assertAll();
         // Нажатие на "Отправить"
         createPage.clickSendLetterButton();
         // Проверка, что письмо из "Черновики" ушло
-        assertEquals(homePage.getPopupMessageDrafts().getAttribute("title"), "Черновики, нет писем");
+        assertEquals(homePage.getPopupMessageDrafts(), "Черновики, нет писем");
 
         // Переход во "Входящие"
         homePage.goToInbox();
         // Открытие письма по индексу 0
         inboxPage.openLetterByIndex(0);
         // Проверка получателя, темы и тела письма
-        sa.assertEquals(inboxPage.getSenderField().getAttribute("title"), email);
-        sa.assertEquals(inboxPage.getSubjectField().getText(), subject);
-        sa.assertTrue(inboxPage.getBodyField().getText().contains(body), "Тело письма не содержит ожидаемого текста");
+        sa.assertEquals(inboxPage.getSenderField(), email);
+        sa.assertEquals(inboxPage.getSubjectField(), subject);
+        sa.assertTrue(inboxPage.getBodyField().contains(body), "Тело письма не содержит ожидаемого текста");
         sa.assertAll();
 
         // Выход

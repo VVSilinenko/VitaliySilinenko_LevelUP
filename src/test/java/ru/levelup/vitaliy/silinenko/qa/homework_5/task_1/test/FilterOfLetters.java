@@ -37,7 +37,7 @@ public class FilterOfLetters extends TestBase {
         // Переход в папку "Отправленные"
         homePage.goToSent();
         // Проверка, что в папке есть письмо
-        assertEquals(sentPage.getLettersList().size(), 1);
+        assertEquals(sentPage.getLettersListSize(), 1);
 
         // Переход в папку "Тест"
         homePage.goToTest();
@@ -45,9 +45,9 @@ public class FilterOfLetters extends TestBase {
         testPage.openLetterByIndex(0);
         // Проверка получателя, темы и тела письма
         SoftAssert sa = new SoftAssert();
-        sa.assertEquals(testPage.getSenderField().getAttribute("title"), email);
-        sa.assertEquals(testPage.getSubjectField().getText(), subject);
-        sa.assertTrue(testPage.getBodyField().getText().contains(body), "Тело письма не содержит ожидаемого текста");
+        sa.assertEquals(testPage.getSenderField(), email);
+        sa.assertEquals(testPage.getSubjectField(), subject);
+        sa.assertTrue(testPage.getBodyField().contains(body), "Тело письма не содержит ожидаемого текста");
         sa.assertAll();
 
         // Выход

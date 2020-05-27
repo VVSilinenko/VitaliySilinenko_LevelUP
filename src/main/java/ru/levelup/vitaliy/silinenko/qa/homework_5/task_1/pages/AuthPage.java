@@ -3,16 +3,16 @@ package ru.levelup.vitaliy.silinenko.qa.homework_5.task_1.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
-public class AuthPage {
+public class AuthPage extends BasePage {
 
     public AuthPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     // Поле для ввода логина
@@ -59,15 +59,8 @@ public class AuthPage {
     }
 
     private void changeDomain(String domainName){
-        domainButton.click();
-        List<WebElement> domains = domainsList;
-        for (WebElement domain : domains) {
-            if (domain.getText().equals(domainName)) {
-                domain.click();
-                break;
-            }
-        }
-        domainButton.click();
+        Select select = new Select(domainButton);
+        select.selectByVisibleText(domainName);
     }
 
 }

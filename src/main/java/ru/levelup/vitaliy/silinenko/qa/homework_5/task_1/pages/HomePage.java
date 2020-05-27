@@ -4,18 +4,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class HomePage {
+import java.util.List;
 
-    private WebDriver driver;
+public class HomePage extends BasePage {
+
     private WebDriverWait wait;
 
     public HomePage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+        super(driver);
     }
 
     // Кнопка "Выход"
@@ -46,25 +45,13 @@ public class HomePage {
     @FindBy (xpath = "//div[@class='nav__folder-name__txt'][text()='Корзина']")
     private WebElement trash;
 
-    // Всплывающее сообщение при наведении на "Входящие"
-    @FindBy (xpath = "//a[@href='/inbox/']")
-    private WebElement popupMessageInbox;
-
-    // Всплывающее сообщение при наведении на "Test"
-    @FindBy (xpath = "//a[@href='/1/']")
-    private WebElement popupMessageTest;
-
-    // Всплывающее сообщение при наведении на "Отправленные"
-    @FindBy (xpath = "//a[@href='/sent/']")
-    private WebElement popupMessageSent;
-
     // Всплывающее сообщение при наведении на "Черновики"
     @FindBy (xpath = "//a[@href='/drafts/']")
     private WebElement popupMessageDrafts;
 
-    // Всплывающее сообщение при наведении на "Корзина"
-    @FindBy (xpath = "//a[@href='/trash/']")
-    private WebElement popupMessageTrash;
+    // Список всех всплывающих сообщений
+    @FindBy (xpath = "//div[@class='nav-folders']//a")
+    private List<WebElement> foldersList;
 
     // Кнопка "Очистить содержимое" во всплывающем меню
     @FindBy (xpath = "//span[@class='list-item__text'][text()='Очистить содержимое']")
@@ -118,65 +105,14 @@ public class HomePage {
 
     // Удаление из всех папок
     public void deleteFromAllFolder(){
-        deleteAllFromInbox();
-        deleteAllFromTest();
-        deleteAllFromSent();
-        deleteAllFromDrafts();
-        deleteAllFromTrash();
-    }
-
-    // Удаление из "Входящие"
-    public void deleteAllFromInbox() {
-        if (!popupMessageInbox.getAttribute("title").equals("Входящие, нет писем")) {
-            wait = new WebDriverWait(driver, 10);
-            Actions action = new Actions(driver);
-            action.moveToElement(inbox).contextClick().build().perform();
-            action.moveToElement(clearContentsButton).click().build().perform();
-            wait.until(ExpectedConditions.elementToBeClickable(clearButton)).click();
-        }
-    }
-
-    // Удаление из "Тест"
-    public void deleteAllFromTest() {
-        if (!popupMessageTest.getAttribute("title").equals("Тест, нет писем")) {
-            wait = new WebDriverWait(driver, 10);
-            Actions action = new Actions(driver);
-            action.moveToElement(test).contextClick().build().perform();
-            action.moveToElement(clearContentsButton).click().build().perform();
-            wait.until(ExpectedConditions.elementToBeClickable(clearButton)).click();
-        }
-    }
-
-    // Удаление из "Отправленные"
-    public void deleteAllFromSent() {
-        if (!popupMessageSent.getAttribute("title").equals("Отправленные, нет писем")) {
-            wait = new WebDriverWait(driver, 10);
-            Actions action = new Actions(driver);
-            action.moveToElement(sent).contextClick().build().perform();
-            action.moveToElement(clearContentsButton).click().build().perform();
-            wait.until(ExpectedConditions.elementToBeClickable(clearButton)).click();
-        }
-    }
-
-    // Удаление из "Черновики"
-    public void deleteAllFromDrafts() {
-        if (!popupMessageDrafts.getAttribute("title").equals("Черновики, нет писем")) {
-            wait = new WebDriverWait(driver, 10);
-            Actions action = new Actions(driver);
-            action.moveToElement(drafts).contextClick().build().perform();
-            action.moveToElement(clearContentsButton).click().build().perform();
-            wait.until(ExpectedConditions.elementToBeClickable(clearButton)).click();
-        }
-    }
-
-    // Удаление из "Корзина"
-    public void deleteAllFromTrash() {
-        if (!popupMessageTrash.getAttribute("title").equals("Корзина, нет писем")) {
-            wait = new WebDriverWait(driver, 10);
-            Actions action = new Actions(driver);
-            action.moveToElement(trash).contextClick().build().perform();
-            action.moveToElement(clearContentsButton).click().build().perform();
-            wait.until(ExpectedConditions.elementToBeClickable(clearButton)).click();
+        for (WebElement webElement : foldersList) {
+            if (!webElement.getAttribute("title").contains("нет писем")) {
+                wait = new WebDriverWait(driver, 10);
+                Actions action = new Actions(driver);
+                action.moveToElement(webElement).contextClick().build().perform();
+                action.moveToElement(clearContentsButton).click().build().perform();
+                wait.until(ExpectedConditions.elementToBeClickable(clearButton)).click();
+            }
         }
     }
 
@@ -184,7 +120,7 @@ public class HomePage {
         return writeLetterButton;
     }
 
-    public WebElement getPopupMessageDrafts() {
-        return popupMessageDrafts;
+    public String getPopupMessageDrafts() {
+        return popupMessageDrafts.getAttribute("title");
     }
 }

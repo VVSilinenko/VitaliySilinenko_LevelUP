@@ -6,12 +6,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import ru.levelup.vitaliy.silinenko.qa.homework_5.task_1.pages.*;
+import ru.levelup.vitaliy.silinenko.qa.homework_5.task_1.pages.folders.*;
 
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-    WebDriver driver;
+    private WebDriver driver;
     protected AuthPage authPage;
     protected HomePage homePage;
     protected CreateLetterPage createPage;

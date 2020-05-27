@@ -40,9 +40,9 @@ public class LetterInBasket extends TestBase {
         inboxPage.openLetterByIndex(0);
         // Проверка получателя, темы и тела письма
         SoftAssert sa = new SoftAssert();
-        sa.assertEquals(inboxPage.getSenderField().getAttribute("title"), email);
-        sa.assertEquals(inboxPage.getSubjectField().getText(), subject);
-        sa.assertTrue(inboxPage.getBodyField().getText().contains(body), "Тело письма не содержит ожидаемого текста");
+        sa.assertEquals(inboxPage.getSenderField(), email);
+        sa.assertEquals(inboxPage.getSubjectField(), subject);
+        sa.assertTrue(inboxPage.getBodyField().contains(body), "Тело письма не содержит ожидаемого текста");
         sa.assertAll();
         // Удаление письма
         inboxPage.clickDeleteButton();
@@ -50,7 +50,7 @@ public class LetterInBasket extends TestBase {
         // Переход в "Корзина"
         homePage.goToTrash();
         // Проверка, что письмо появилось в "Корзина"
-        assertEquals(trashPage.getLettersList().size(), 1);
+        assertEquals(trashPage.getLettersListSize(), 1);
 
         // Выход
         homePage.exit();
