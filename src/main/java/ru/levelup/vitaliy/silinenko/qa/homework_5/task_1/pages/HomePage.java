@@ -11,8 +11,6 @@ import java.util.List;
 
 public class HomePage extends BasePage {
 
-    private WebDriverWait wait;
-
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -63,19 +61,16 @@ public class HomePage extends BasePage {
 
     // Нажатие на "Выход"
     public void exit(){
-        wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.elementToBeClickable(exitButton)).click();
     }
 
     // Нажатие не "Написать письмо"
     public void clickWriteLetterButton(){
-        wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(writeLetterButton)).click();
     }
 
     // Переход в "Черновики"
     public void goToDrafts(){
-        wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(drafts)).click();
     }
 
@@ -87,7 +82,6 @@ public class HomePage extends BasePage {
 
     // Переход во "Отправленные"
     public void goToSent(){
-        wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(sent)).click();
     }
 
@@ -99,7 +93,6 @@ public class HomePage extends BasePage {
 
     // Переход в "Корзина"
     public void goToTrash(){
-        wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(trash)).click();
     }
 
@@ -107,7 +100,6 @@ public class HomePage extends BasePage {
     public void deleteFromAllFolder(){
         for (WebElement webElement : foldersList) {
             if (!webElement.getAttribute("title").contains("нет писем")) {
-                wait = new WebDriverWait(driver, 10);
                 Actions action = new Actions(driver);
                 action.moveToElement(webElement).contextClick().build().perform();
                 action.moveToElement(clearContentsButton).click().build().perform();

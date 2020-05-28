@@ -4,13 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public class CreateLetterPage extends BasePage {
-
-    private WebDriverWait wait;
 
     public CreateLetterPage(WebDriver driver) {
         super(driver);
@@ -50,7 +47,6 @@ public class CreateLetterPage extends BasePage {
 
     // Заполнение полей письма
     public void fillLetterFields(String email, String subject, String body){
-        wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.elementToBeClickable(recipientField)).sendKeys(email);
         subjectField.sendKeys(subject);
         bodyField.sendKeys(body);
@@ -68,7 +64,6 @@ public class CreateLetterPage extends BasePage {
 
     // Нажатие на кнопку "Отправить"
     public void clickSendLetterButton(){
-        wait = new WebDriverWait(driver, 10);
         sendLetterButton.click();
         wait.until(ExpectedConditions.elementToBeClickable(closeFormAfterSendLetterButton)).click();
     }
