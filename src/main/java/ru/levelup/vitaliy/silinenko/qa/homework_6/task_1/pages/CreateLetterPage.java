@@ -1,4 +1,4 @@
-package ru.levelup.vitaliy.silinenko.qa.homework_5.task_1.pages;
+package ru.levelup.vitaliy.silinenko.qa.homework_6.task_1.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +16,10 @@ public class CreateLetterPage extends BasePage {
     // Поле "Кому"
     @FindBy (xpath = "//div[@data-name='to']//input[@type='text']")
     private WebElement recipientField;
+
+    // Поле "Кому", имя получателя
+    @FindBy (xpath = "//div[contains(@class, 'contactsContainer')]//div[contains(@class, 'status_base')]")
+    private WebElement recipientName;
 
     // Поле "Тема"
     @FindBy (name = "Subject")
@@ -68,15 +72,8 @@ public class CreateLetterPage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(closeFormAfterSendLetterButton)).click();
     }
 
-    // Проверка на наличие в списке получателей
-    public boolean isEmptyRecipient(String recipientName){
-        List<WebElement> recipients = contactsList;
-        for (WebElement recipient : recipients) {
-            if (recipient.getAttribute("title").equals(recipientName)){
-                return true;
-            }
-        }
-        return false;
+    public String getRecipientName() {
+        return recipientName.getAttribute("title");
     }
 
     public String getSubjectField() {

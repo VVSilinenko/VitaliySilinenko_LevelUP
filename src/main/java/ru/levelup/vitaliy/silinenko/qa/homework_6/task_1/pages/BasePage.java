@@ -1,4 +1,4 @@
-package ru.levelup.vitaliy.silinenko.qa.homework_5.task_1.pages;
+package ru.levelup.vitaliy.silinenko.qa.homework_6.task_1.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

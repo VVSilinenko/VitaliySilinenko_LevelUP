@@ -1,11 +1,10 @@
-package ru.levelup.vitaliy.silinenko.qa.homework_5.task_1.pages;
+package ru.levelup.vitaliy.silinenko.qa.homework_6.task_1.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -69,31 +68,27 @@ public class HomePage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(writeLetterButton)).click();
     }
 
-    // Переход в "Черновики"
-    public void goToDrafts(){
-        wait.until(ExpectedConditions.elementToBeClickable(drafts)).click();
-    }
-
-    // Переход во "Входящие"
-    public void goToInbox(){
-        wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable(inbox)).click();
-    }
-
-    // Переход во "Отправленные"
-    public void goToSent(){
-        wait.until(ExpectedConditions.elementToBeClickable(sent)).click();
-    }
-
-    // Переход в "Тест"
-    public void goToTest(){
-        wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable(test)).click();
-    }
-
-    // Переход в "Корзина"
-    public void goToTrash(){
-        wait.until(ExpectedConditions.elementToBeClickable(trash)).click();
+    // Переход в папку по имени
+    public void goToFolder(String folderName){
+        switch (folderName.toLowerCase()) {
+            case  ("входящие"):
+                inbox.click();
+                break;
+            case ("тест"):
+                test.click();
+                break;
+            case ("отправленные"):
+                sent.click();
+                break;
+            case ("черновики"):
+                drafts.click();
+                break;
+            case ("корзина"):
+                trash.click();
+                break;
+            default:
+                throw new IllegalArgumentException("Нет такой папки");
+        }
     }
 
     // Удаление из всех папок
